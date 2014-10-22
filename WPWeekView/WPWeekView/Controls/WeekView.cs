@@ -56,7 +56,8 @@ namespace WPWeekView.Controls
         {
             if (days == null || days.Length == 0)
                 return;
-            StartingDay = days[0];
+            startingDay = days[0];
+            DaysOfWeek = days;
         }
 
         /// <summary>
