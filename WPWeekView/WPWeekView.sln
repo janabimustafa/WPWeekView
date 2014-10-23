@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPWeekView", "WPWeekView\WPWeekView.csproj", "{2C723A0F-C6E9-4FB5-94FC-7AA32717B1B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeekViewSampleApp", "WeekViewSampleApp\WeekViewSampleApp.csproj", "{19B52CA2-D129-472E-A2C3-643C2C4F87D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,24 @@ Global
 		{2C723A0F-C6E9-4FB5-94FC-7AA32717B1B1}.Release|ARM.Build.0 = Release|ARM
 		{2C723A0F-C6E9-4FB5-94FC-7AA32717B1B1}.Release|x86.ActiveCfg = Release|x86
 		{2C723A0F-C6E9-4FB5-94FC-7AA32717B1B1}.Release|x86.Build.0 = Release|x86
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|ARM.Build.0 = Debug|ARM
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|ARM.Deploy.0 = Debug|ARM
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|x86.ActiveCfg = Debug|x86
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|x86.Build.0 = Debug|x86
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Debug|x86.Deploy.0 = Debug|x86
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|ARM.ActiveCfg = Release|ARM
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|ARM.Build.0 = Release|ARM
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|ARM.Deploy.0 = Release|ARM
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|x86.ActiveCfg = Release|x86
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|x86.Build.0 = Release|x86
+		{19B52CA2-D129-472E-A2C3-643C2C4F87D3}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
