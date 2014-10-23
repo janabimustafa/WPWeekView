@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WPWeekView.Controls
 {
+    [TemplatePart(Name = PART_WEEK_CANVAS_NAME, Type = typeof(Canvas))]
+    [TemplatePart(Name = PART_DAY_NAME, Type = typeof(Grid))]
     class WeekView : Control
     {
         /// <summary>
         /// <see cref="StartingDay">See StartingDay Property</see>
         /// </summary>
         private DayOfWeek startingDay;
-
+        private const string PART_WEEK_CANVAS_NAME = "PART_WEEK_CANVAS";
+        private const string PART_DAY_NAME = "PART_DAY_NAME";
         /// <summary>
         /// Gets or sets the starting day of the week to be dispalyed
         /// </summary>
@@ -36,9 +40,15 @@ namespace WPWeekView.Controls
         private IEnumerable<DayOfWeek> DaysOfWeek;
 
         public WeekView()
-        {            
+        {
             DefaultStyleKey = typeof(WeekView);
             StartingDay = DayOfWeek.Sunday;
+            InitSchedule();            
+        }
+
+        private void InitSchedule()
+        {
+
         }
 
         /// <summary>
