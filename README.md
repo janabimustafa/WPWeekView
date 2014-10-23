@@ -1,4 +1,4 @@
 WPWeekView
 ==========
 
-A week view calendar control for Windows Phone
+A week view calendar control for Windows Phone (work in progress).
