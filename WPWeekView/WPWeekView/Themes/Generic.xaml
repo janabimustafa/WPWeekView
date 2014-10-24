@@ -23,4 +23,16 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="controls:WeekViewCell">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:WeekView">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="Transparent">
+                        <ContentPresenter x:Name="PART_CONTENT_PRESENTER"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -12,34 +12,69 @@ namespace WPWeekView.Controls
     [TemplatePart(Name = PART_DAY_NAME, Type = typeof(Grid))]
     public class WeekView : Control
     {
-        /// <summary>
-        /// <see cref="StartingDay">See StartingDay Property</see>
-        /// </summary>
-        private DayOfWeek startingDay;
         private const string PART_WEEK_CANVAS_NAME = "PART_WEEK_CANVAS";
         private const string PART_DAY_NAME = "PART_DAY_NAME";
+
+
+        /// <summary>
+        /// The starting hour in a 24-hour format
+        /// A valid value would be an hour between 0 inclusive and 24 exclusive
+        /// </summary>
+        public int StartingHour
+        {
+            get { return (int)GetValue(StartingHourProperty); }
+            set { SetValue(StartingHourProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for StartingHour.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StartingHourProperty =
+            DependencyProperty.Register("StartingHour", typeof(int), typeof(WeekView), new PropertyMetadata(6));
+
+
+        /// <summary>
+        /// The ending hour in a 24-hour format       
+        /// A valid value would be an hour between 0 inclusive and 24 exclusive
+        /// </summary>
+        public int EndingHour
+        {
+            get { return (int)GetValue(EndingHourProperty); }
+            set { SetValue(EndingHourProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EndingHour.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EndingHourProperty =
+            DependencyProperty.Register("EndingHour", typeof(int), typeof(WeekView), new PropertyMetadata(23));
+
+
+
         /// <summary>
         /// Gets or sets the starting day of the week to be dispalyed
         /// </summary>
         public DayOfWeek StartingDay
         {
-            get
-            {
-                return startingDay;
-            }
+            get { return (DayOfWeek)GetValue(StartingDayProperty); }
             set
             {
-                startingDay = value;
+                SetValue(StartingDayProperty, value);
                 UpdateDaysOfWeek();
             }
         }
+
+        // Using a DependencyProperty as the backing store for StartingDay.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty StartingDayProperty =
+            DependencyProperty.Register("StartingDay", typeof(DayOfWeek), typeof(WeekView), new PropertyMetadata(DayOfWeek.Sunday));
+
+
+
+
 
         /// <summary>
         /// The days of week to be used, starting from the <see cref="StartingDay">StartingDay</see>
         /// </summary>
         private DayOfWeek[] DaysOfWeek;
 
-        public WeekView() : base()
+        public WeekView()
+            : base()
         {
             DefaultStyleKey = typeof(WeekView);
             Loaded += WeekView_Loaded;
@@ -72,8 +107,8 @@ namespace WPWeekView.Controls
         {
             if (days == null || days.Length == 0)
                 return;
-            startingDay = days[0];
             DaysOfWeek = days;
+            StartingDay = days[0];
         }
 
         /// <summary>
@@ -83,8 +118,8 @@ namespace WPWeekView.Controls
         {
             var days = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
             int dayIndex = (int)StartingDay;
-            DaysOfWeek = days.Skip(dayIndex).Concat(days.Take(dayIndex)).ToArray();            
-            GenerateWeekDays();            
+            DaysOfWeek = days.Skip(dayIndex).Concat(days.Take(dayIndex)).ToArray();
+            GenerateWeekDays();
         }
 
         #region Header Methods
@@ -95,7 +130,7 @@ namespace WPWeekView.Controls
                 return;
             daysGrid.Children.Clear();
             daysGrid.ColumnDefinitions.Clear();
-            for(int i = 0; i < DaysOfWeek.Length; i++)
+            for (int i = 0; i < DaysOfWeek.Length; i++)
             {
                 DayOfWeek day = DaysOfWeek[i];
                 daysGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(DaysOfWeek.Length, GridUnitType.Star) });
@@ -113,5 +148,6 @@ namespace WPWeekView.Controls
         }
 
         #endregion
+
     }
 }
