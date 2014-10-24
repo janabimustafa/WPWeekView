@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,15 +76,15 @@ namespace WPWeekView.Controls
         /// <summary>
         /// Gets the collection of WeekViewCell items
         /// </summary>
-        public IEnumerable<WeekViewCell> Items
+        public ObservableCollection<WeekViewCell> Items
         {
-            get { return (IEnumerable<WeekViewCell>)GetValue(ItemsProperty); }
-            private set { SetValue(ItemsProperty, value); }
+            get { return (ObservableCollection<WeekViewCell>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Items.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsProperty =
-            DependencyProperty.Register("Items", typeof(IEnumerable<WeekViewCell>), typeof(WeekView), new PropertyMetadata(default(IEnumerable<WeekViewCell>)));
+            DependencyProperty.Register("Items", typeof(ObservableCollection<WeekViewCell>), typeof(WeekView), new PropertyMetadata(new ObservableCollection<WeekViewCell>()));
 
 
         /// <summary>
@@ -118,9 +119,47 @@ namespace WPWeekView.Controls
 
         void WeekView_Loaded(object sender, RoutedEventArgs e)
         {
+            Items.CollectionChanged += Items_CollectionChanged;
             StartingDay = DayOfWeek.Sunday;
             InitSchedule();
             Loaded -= WeekView_Loaded;
+        }
+
+        void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                foreach (Control item in e.NewItems)
+                {
+                    item.Tap += cell_tap;
+                }
+            }
+            else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Remove)
+            {
+                foreach (Control item in e.OldItems)
+                {
+                    item.Tap -= cell_tap;
+                }
+            }
+            else if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Replace)
+            {
+                foreach (Control item in e.NewItems)
+                {
+                    item.Tap += cell_tap;
+                }
+                foreach (Control item in e.OldItems)
+                {
+                    item.Tap -= cell_tap;
+                }
+            }
+        }
+
+        void cell_tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            SelectedItem = sender as WeekViewCell;
+            if (SelectedItem != null)
+                if (SelectionChanged != null)
+                    SelectionChanged(this, sender as WeekViewCell);
         }
 
         private void InitSchedule()

@@ -17,7 +17,7 @@ namespace WeekViewSampleApp
         public MainPage()
         {
             InitializeComponent();
-            Loaded += MainPage_Loaded;            
+            Loaded += MainPage_Loaded;
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
@@ -31,7 +31,8 @@ namespace WeekViewSampleApp
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             weekView.StartingDay = DayOfWeek.Wednesday;
-            return;
+            weekView.Items.Add(new WPWeekView.Controls.WeekViewCell() { StartingTime = 8, EndingTime = 9, Day = DayOfWeek.Monday });
+            weekView.Items.Add(new WPWeekView.Controls.WeekViewCell() { StartingTime = 7, EndingTime = 10, Day = DayOfWeek.Wednesday });
         }
 
         // Sample code for building a localized ApplicationBar
