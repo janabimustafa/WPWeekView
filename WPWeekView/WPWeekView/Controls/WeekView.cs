@@ -152,6 +152,31 @@ namespace WPWeekView.Controls
                     item.Tap -= cell_tap;
                 }
             }
+            UpdateWeekView();
+        }
+
+        private void UpdateWeekView()
+        {
+            Canvas canvas = (Canvas)GetTemplateChild(PART_WEEK_CANVAS_NAME);
+            Grid emptyGrid = (Grid)GetTemplateChild(PART_SCHEDULE_ITEMS_NAME);
+            canvas.Children.Clear();
+            foreach (var item in Items)
+            {
+                if (item.StartingTime == item.EndingTime || item.StartingTime == 0 || item.EndingTime == 0 || !DaysOfWeek.Contains(item.Day))
+                    continue;
+                var cells = from cell in emptyGrid.Children where cell is WeekViewCell where ((WeekViewCell)cell).Day == item.Day select cell;
+                double x = emptyGrid.ColumnDefinitions[1].ActualWidth * (Array.IndexOf(DaysOfWeek, item.Day) + 1);
+                double y = emptyGrid.RowDefinitions[0].ActualHeight * (item.StartingTime - this.StartingHour);
+                double w = emptyGrid.ColumnDefinitions[1].ActualWidth;
+                double h = emptyGrid.RowDefinitions[0].ActualHeight * (item.EndingTime - item.StartingTime);
+                item.Height = h;
+                item.Width = w;
+                Canvas.SetTop(item, y);
+                Canvas.SetLeft(item, x); 
+                item.Content = new Grid() { Background = Foreground };
+                
+                canvas.Children.Add(item);
+            }
         }
 
         void cell_tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -218,7 +243,7 @@ namespace WPWeekView.Controls
             time.Margin = new Thickness(0, -8, 0, 0);
             time.Foreground = Foreground;
             time.FontSize = 12;
-            time.HorizontalAlignment = HorizontalAlignment.Left;
+            time.HorizontalAlignment = HorizontalAlignment.Right;
             Grid.SetRow(time, r);
             Grid.SetColumn(time, c);
             return time;

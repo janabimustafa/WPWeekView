@@ -47,7 +47,7 @@ namespace WPWeekView.Controls
 
         // Using a DependencyProperty as the backing store for EndingTime.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndingTimeProperty =
-            DependencyProperty.Register("EndingTime", typeof(double), typeof(WeekViewCell), new PropertyMetadata(default(DateTime)));
+            DependencyProperty.Register("EndingTime", typeof(double), typeof(WeekViewCell), new PropertyMetadata(default(double)));
 
 
         public WeekViewCell()
