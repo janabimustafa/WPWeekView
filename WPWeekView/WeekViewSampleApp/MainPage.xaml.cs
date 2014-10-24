@@ -24,13 +24,13 @@ namespace WeekViewSampleApp
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            weekView.SetDaysOfWeek(DayOfWeek.Monday, DayOfWeek.Sunday, DayOfWeek.Thursday);
+            weekView.SetDaysOfWeek(DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday);
             Loaded -= MainPage_Loaded;
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            weekView.StartingDay = DayOfWeek.Monday;
+            weekView.StartingDay = DayOfWeek.Wednesday;
             return;
         }
 
